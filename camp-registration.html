@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Camp Registration | Made Di11erent</title>
+  <meta name="description" content="Register interest for Made Di11erent basketball camps and clinics.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body{background:#0a0a0a;color:#fff}
+    .camp-hero{
+      min-height:420px;padding:130px max(5vw,28px) 70px;
+      background:
+        linear-gradient(90deg,rgba(0,0,0,.9),rgba(0,0,0,.45)),
+        url('assets/camp-group.jpg') center 40% / cover no-repeat;
+      display:flex;align-items:flex-end
+    }
+    .camp-hero h1{
+      font-family:'Barlow Condensed',sans-serif;
+      text-transform:uppercase;font-size:clamp(54px,7vw,92px);
+      line-height:.88;margin:0;max-width:900px
+    }
+    .camp-hero h1 span{color:var(--red)}
+    .registration-wrap{
+      display:grid;grid-template-columns:.72fr 1.28fr;
+      gap:60px;padding:80px max(5vw,28px);background:#0a0a0a
+    }
+    .registration-intro{position:sticky;top:110px;align-self:start}
+    .registration-intro h2{
+      font-family:'Barlow Condensed',sans-serif;
+      text-transform:uppercase;font-size:50px;line-height:.95;margin:0 0 18px
+    }
+    .registration-intro p{color:#bdbdbd;line-height:1.8}
+    .form-card{background:#141414;border:1px solid #2a2a2a;padding:34px}
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+    .field.full{grid-column:1/-1}
+    label{
+      font-size:11px;text-transform:uppercase;
+      letter-spacing:1.4px;font-weight:800;color:#e5e5e5
+    }
+    input,select,textarea{
+      width:100%;background:#090909;color:white;
+      border:1px solid #333;padding:14px 15px;
+      font:inherit;border-radius:0;outline:none
+    }
+    input:focus,select:focus,textarea:focus{border-color:var(--red)}
+    textarea{min-height:110px;resize:vertical}
+    .check-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .check{
+      display:flex;align-items:center;gap:10px;
+      background:#0d0d0d;border:1px solid #2b2b2b;padding:12px
+    }
+    .check input{width:auto}
+    .form-note{
+      color:#aaa;font-size:13px;line-height:1.6;
+      border-left:3px solid var(--red);padding-left:14px;margin:20px 0
+    }
+    .success-box{
+      display:none;background:#101a12;border:1px solid #275d32;
+      padding:22px;margin-top:18px
+    }
+    .success-box.show{display:block}
+    .email-preview{
+      display:none;background:#0c0c0c;border:1px solid #292929;
+      margin-top:18px;padding:18px;color:#ccc;white-space:pre-wrap
+    }
+    .email-preview.show{display:block}
+    .secondary-action{
+      margin-top:12px;background:transparent;border:1px solid #555;
+      color:white;padding:12px 18px;font-weight:800;text-transform:uppercase;
+      letter-spacing:1px;cursor:pointer;width:100%
+    }
+    .coming-soon{
+      margin-top:22px;padding:20px;background:#111;border:1px solid #242424;
+      border-left:3px solid var(--red);color:#ccc
+    }
+    @media(max-width:900px){
+      .registration-wrap{grid-template-columns:1fr}
+      .registration-intro{position:static}
+    }
+    @media(max-width:620px){
+      .field-grid,.check-grid{grid-template-columns:1fr}
+      .form-card{padding:22px}
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <a class="wordmark" href="index.html">MADE DI<span>11</span>ERENT</a>
+  <nav class="nav" style="display:flex">
+    <a href="index.html#training">Training</a>
+    <a href="index.html#camps">Camps</a>
+    <a href="index.html#about">Coach Q</a>
+    <a href="inquiry.html">Book Training</a>
+  </nav>
+</header>
+
+<section class="camp-hero">
+  <div>
+    <span class="label">CAMPS & CLINICS</span>
+    <h1>COMPETE. LEARN. <span>GROW.</span></h1>
+  </div>
+</section>
+
+<main class="registration-wrap">
+  <aside class="registration-intro">
+    <span class="label">CAMP REGISTRATION</span>
+    <h2>GET ON THE LIST.</h2>
+    <p>Use this page to register interest for upcoming Made Di11erent camps and clinics.</p>
+    <p>When a specific camp is announced, this page can be updated with the exact date, location, age group, price and availability.</p>
+    <div class="coming-soon">
+      <strong>Upcoming Camp Details</strong><br>
+      Event dates and locations will be posted here when registration opens.
+    </div>
+  </aside>
+
+  <section class="form-card">
+    <form id="campForm">
+      <div class="field-grid">
+
+        <div class="field">
+          <label for="camperName">Camper Name *</label>
+          <input id="camperName" name="camperName" required>
+        </div>
+
+        <div class="field">
+          <label for="parentName">Parent / Guardian Name *</label>
+          <input id="parentName" name="parentName" required>
+        </div>
+
+        <div class="field">
+          <label for="grade">Current Grade *</label>
+          <select id="grade" name="grade" required>
+            <option value="">Select grade</option>
+            <option>1st Grade</option>
+            <option>2nd Grade</option>
+            <option>3rd Grade</option>
+            <option>4th Grade</option>
+            <option>5th Grade</option>
+            <option>6th Grade</option>
+            <option>7th Grade</option>
+            <option>8th Grade</option>
+            <option>9th Grade</option>
+            <option>10th Grade</option>
+            <option>11th Grade</option>
+            <option>12th Grade</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="age">Age</label>
+          <input id="age" name="age" type="number" min="5" max="19">
+        </div>
+
+        <div class="field">
+          <label for="email">Parent / Guardian Email *</label>
+          <input id="email" name="email" type="email" required>
+        </div>
+
+        <div class="field">
+          <label for="phone">Parent / Guardian Phone *</label>
+          <input id="phone" name="phone" type="tel" required>
+        </div>
+
+        <div class="field">
+          <label for="school">School</label>
+          <input id="school" name="school">
+        </div>
+
+        <div class="field">
+          <label for="shirt">T-Shirt Size</label>
+          <select id="shirt" name="shirt">
+            <option value="">Select size</option>
+            <option>Youth XS</option>
+            <option>Youth S</option>
+            <option>Youth M</option>
+            <option>Youth L</option>
+            <option>Youth XL</option>
+            <option>Adult S</option>
+            <option>Adult M</option>
+            <option>Adult L</option>
+            <option>Adult XL</option>
+            <option>Adult XXL</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label>Camp / Clinic Interest *</label>
+          <div class="check-grid">
+            <label class="check"><input type="checkbox" name="campType" value="Youth Camp"> Youth Camp</label>
+            <label class="check"><input type="checkbox" name="campType" value="Skill Development Clinic"> Skill Development Clinic</label>
+            <label class="check"><input type="checkbox" name="campType" value="Middle School / High School Clinic"> MS / HS Clinic</label>
+            <label class="check"><input type="checkbox" name="campType" value="Team Camp / Team Clinic"> Team Camp / Team Clinic</label>
+          </div>
+        </div>
+
+        <div class="field full">
+          <label for="experience">Basketball Experience</label>
+          <textarea id="experience" name="experience" placeholder="Team, level of play, years playing, etc."></textarea>
+        </div>
+
+        <div class="field full">
+          <label for="medical">Medical / Allergy / Injury Information</label>
+          <textarea id="medical" name="medical" placeholder="Anything the coaching staff should be aware of."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="emergencyName">Emergency Contact Name *</label>
+          <input id="emergencyName" name="emergencyName" required>
+        </div>
+
+        <div class="field">
+          <label for="emergencyPhone">Emergency Contact Phone *</label>
+          <input id="emergencyPhone" name="emergencyPhone" type="tel" required>
+        </div>
+
+        <div class="field full">
+          <label for="notes">Questions / Additional Notes</label>
+          <textarea id="notes" name="notes" placeholder="Questions about a camp, scheduling, age group, location, etc."></textarea>
+        </div>
+      </div>
+
+      <p class="form-note">
+        Submitting this form does not process payment or guarantee a spot in a future camp. It sends your information directly to Coach Quentin so you can receive registration details and next steps.
+      </p>
+
+      <button class="btn btn-red wide" type="submit">Submit Camp Interest</button>
+      <button class="secondary-action" type="button" id="previewBtn">Preview Registration</button>
+
+      <div id="emailPreview" class="email-preview"></div>
+      <div id="successBox" class="success-box">
+        Your camp inquiry is ready. Your email app should open with the registration information filled in. Press Send to complete the request.
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-mark">MADE DI<span>11</span>ERENT</div>
+  <p>Train Different. Compete Different. Live Different.</p>
+</footer>
+
+<script>
+function collectCampData() {
+  const f = document.getElementById('campForm');
+  const types = [...f.querySelectorAll('input[name="campType"]:checked')].map(x => x.value);
+  return {
+    camper: f.camperName.value.trim(),
+    parent: f.parentName.value.trim(),
+    grade: f.grade.value,
+    age: f.age.value.trim(),
+    email: f.email.value.trim(),
+    phone: f.phone.value.trim(),
+    school: f.school.value.trim(),
+    shirt: f.shirt.value,
+    types: types.join(', ') || 'Not selected',
+    experience: f.experience.value.trim(),
+    medical: f.medical.value.trim(),
+    emergencyName: f.emergencyName.value.trim(),
+    emergencyPhone: f.emergencyPhone.value.trim(),
+    notes: f.notes.value.trim()
+  };
+}
+
+function buildCampMessage(d) {
+  return `MADE DI11ERENT CAMP / CLINIC INTEREST
+
+Camper: ${d.camper}
+Parent/Guardian: ${d.parent}
+Grade: ${d.grade}
+Age: ${d.age || 'Not provided'}
+School: ${d.school || 'N/A'}
+T-Shirt Size: ${d.shirt || 'Not provided'}
+
+Parent Email: ${d.email}
+Parent Phone: ${d.phone}
+
+Camp / Clinic Interest:
+${d.types}
+
+Basketball Experience:
+${d.experience || 'Not provided'}
+
+Medical / Allergy / Injury Information:
+${d.medical || 'None provided'}
+
+Emergency Contact:
+${d.emergencyName}
+${d.emergencyPhone}
+
+Questions / Additional Notes:
+${d.notes || 'None'}
+
+---
+Submitted from the Made Di11erent website.`;
+}
+
+document.getElementById('previewBtn').addEventListener('click', () => {
+  const d = collectCampData();
+  const box = document.getElementById('emailPreview');
+  box.textContent = buildCampMessage(d);
+  box.classList.add('show');
+});
+
+document.getElementById('campForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const selected = this.querySelectorAll('input[name="campType"]:checked');
+  if (!selected.length) {
+    alert('Please select at least one camp or clinic type.');
+    return;
+  }
+
+  if (!this.reportValidity()) return;
+
+  const d = collectCampData();
+  const subject = `Made Di11erent Camp Interest - ${d.camper}`;
+  const body = buildCampMessage(d);
+  const mailto = `mailto:quentinwilliams@nnu.edu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  document.getElementById('successBox').classList.add('show');
+  window.location.href = mailto;
+});
+</script>
+</body>
+</html>
